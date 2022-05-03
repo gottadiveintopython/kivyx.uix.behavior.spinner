@@ -11,9 +11,9 @@ import asynckivy as ak
 
 
 class KXSpinnerLikeBehavior:
-    '''Flexibler than the official Spinner.
+    '''Mix-in class that helps to create your own spinner.
 
-    Unlike the official one, this one can be combined with any ``ButtonBehavior``. For example:
+    Unlike the official one, this one can be combined with any widget as long as an 'on_release' event is properly implemented. For example:
 
     .. code-block::
 
@@ -24,7 +24,7 @@ class KXSpinnerLikeBehavior:
         class Spinner3(KXSpinnerLikeBehavior, ButtonBehavior, BoxLayout):
             ...
 
-    Furthermore, the 'option_cls' can be any ``ButtonBehavior``.
+    And the 'option_cls' doesn't have to have a 'text' property so the following classes are all valid.
 
     .. code-block::
 
