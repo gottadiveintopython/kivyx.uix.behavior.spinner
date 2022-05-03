@@ -11,8 +11,8 @@ KV_CODE = r'''
     option_cls: 'LocaleOption'
     option_data:
         [
-        {'source': "atlas://country-flags/" + country, 'text': desc, 'lang': lang, }
-        for country, lang, desc in
+        {'source': "atlas://country-flags/" + country, 'text': desc, 'locale': locale, }
+        for country, locale, desc in
         (
         ('hk', 'zh-HK', 'Cantonese', ),
         ('cn', 'zh-CN', 'Chinese (Simplified)', ),
@@ -23,8 +23,8 @@ KV_CODE = r'''
         )
         ]
     on_selection:
-        lang = 'nothing' if (s := self.selection) is None else s.lang
-        print(f"'{lang}' was chosen.")
+        locale = 'nothing' if (s := self.selection) is None else s.locale
+        print(f"'{locale}' was chosen.")
     canvas.after:
         Color:
             rgba: 1, 1, 1, .7
@@ -41,7 +41,7 @@ KV_CODE = r'''
     Image:
         size_hint: .8, .8
         pos_hint: {'center_x': .5, 'center_y': .5, }
-        texture: (s := root.selection, ) and s and s.ids.image.texture
+        texture: (s := root.selection) and s.ids.image.texture
 
 <LocaleOption@ButtonBehavior+BoxLayout>:
     source: ''

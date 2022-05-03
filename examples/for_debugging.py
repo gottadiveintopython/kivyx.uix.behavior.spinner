@@ -19,6 +19,7 @@ KV_CODE = r'''
 
 <ConcreteSpinner@KXSpinnerLikeBehavior+Button>:
     text: '' if self.selection is None else self.selection.text
+    # text: '' if (s := self.selection) is None else s.text  # this doesn't work for some reason
 
 <AnotherButton@ButtonBehavior+Label>:
     size_hint_y: None

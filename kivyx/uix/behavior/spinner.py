@@ -64,14 +64,10 @@ class KXSpinnerLikeBehavior:
         self._main_task = ak.dummy_task
         self._previously_used_resources = {'dropdown': None, 'option_widgets': None, }
         super().__init__(**kwargs)
-        f = self.fbind
-        t = Clock.create_trigger(self._restart)
-        f('option_data', t)
-        f('option_cls', t)
-        f('auto_select', t)
-        f('dropdown_cls', t)
-        f('sync_height', t)
-        t()
+        fbind = self.fbind
+        trigger = Clock.create_trigger(self._restart)
+        for prop in ('option_data', 'option_cls', 'auto_select', 'dropdown_cls', 'sync_height', ):
+            fbind(prop, trigger)
 
     def _restart(self, dt):
         self._main_task.cancel()
